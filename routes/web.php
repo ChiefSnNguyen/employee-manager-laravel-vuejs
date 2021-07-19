@@ -22,6 +22,13 @@ Auth::routes();
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
     Route::resource('users', \App\Http\Controllers\Backend\UserController::class);
     Route::resource('countries', \App\Http\Controllers\Backend\CountryController::class);
+    Route::resource('states', \App\Http\Controllers\Backend\StateController::class);
+    Route::resource('cities', \App\Http\Controllers\Backend\CityController::class);
+    Route::resource('departments', \App\Http\Controllers\Backend\DepartmentController::class);
 
     Route::post('users/{user}/change-password', [\App\Http\Controllers\Backend\ChangePasswordController::class, 'change_password'])->name('users.change.password');
+
+    Route::get('{any}', function () {
+        return view('employees.index');
+    })->where('any', '.*');
 
